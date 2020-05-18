@@ -1,0 +1,46 @@
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  
+  <% if @user.errors.any? %>
+    <% @user.errors.full_messages.each do |error| %>
+      <%= js add_gritter(error, title: "Lotto-Group Notification", sticky: false) %>
+    <% end %>
+  <% end %>
+<div class="form-style-10">
+  <h1>Sign up<span></span></h1>
+  <form>
+      <div class="section"><span>1</span>Name</div>
+      <div class="inner-wrap">
+          
+          <label>First Name <%= f.text_field :first_name, class: "form-control", autofocus: true, autocomplete: "first_name" %></label>
+          <label>Last Name <%= f.text_field :last_name, class: "form-control", autofocus: true, autocomplete: "last_name" %></label>
+          
+      </div>
+
+      <div class="section"><span>2</span>Email</div>
+      <div class="inner-wrap">
+          <label>Email Address <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %></label>
+      </div>
+
+      <div class="section"><span>3</span>Passwords</div>
+          <div class="inner-wrap">
+          <label>Password <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %></label>
+          <label>Password Confirmation<%= f.password_field :password_confirmation, autocomplete: "new-password" %></label>
+          
+      </div>
+      <div class="button-section">
+       <%= f.submit "Sign up" %>
+       
+      </div>
+      <div class="shared-links">
+        <%= render "devise/shared/links" %>
+      </div>
+      
+  </form>
+</div>
+  
+<% end %>

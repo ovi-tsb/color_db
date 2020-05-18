@@ -1,0 +1,9 @@
+
+<% js = escape_javascript(
+  render(
+    partial: 'inks/ink', 
+    locals: { inks: @inks },
+    :locals => { :inks => @inks }
+    )
+) %>
+$("#filterrific_results").html("<%= js %>");

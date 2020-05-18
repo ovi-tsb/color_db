@@ -1,0 +1,18 @@
+<div class="top">
+  <%= image_tag "logo.png" %>
+  <br><br> 
+  <h1>Color Data-Base</h1> 
+</div>
+
+<div class="well">
+  <p>Welcome to INX colours Data-Base. Sharing information with our customers in real time, better control and faster service.</p>
+  <ul class="login-list">
+    <% if !user_signed_in? %>
+      <li><%= link_to "Login", new_user_session_path, class: 'btn btn-lg btn-primary' %></li>
+
+    <% else %>
+      <li><%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'btn btn-lg btn-primary' %></li>
+      <li><%= link_to "Color Data Base", inks_path, class: 'btn btn-lg btn-primary' %></li>
+    <% end %>
+  </ul>
+</div>

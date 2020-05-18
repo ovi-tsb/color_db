@@ -1,0 +1,17 @@
+<tr>
+  <td>
+    <%= customer.id %>
+  </td>
+  <td>
+    <%= customer.name %>
+  </td>
+  <td>
+    <%= customer.created_at.strftime('%b-%d-%y') %>
+  </td>
+  <td>
+    <%= link_to "", edit_customer_path(customer), id: "edit_#{customer.id}", class: 'glyphicon glyphicon-pencil index-icons' %>
+  </td>
+  <td>
+     <%= link_to "", customer_path(customer), method: :delete, id: "delete_item_#{customer.id}_from_index", class: 'glyphicon glyphicon-trash index-icons', data: {confirm: 'Are you sure ?'}  %>
+  </td>
+</tr>

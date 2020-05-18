@@ -10,6 +10,13 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="layer">
+      
+      <!-- <p class="notice"><= notice %></p>
+      <p class="alert"><= alert %></p> -->
+      <%= yield %>
+      <%= render 'shared/alerts' %>
+    </div>
+  
   </body>
 </html>

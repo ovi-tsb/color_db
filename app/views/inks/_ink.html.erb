@@ -1,0 +1,60 @@
+<% @inks.each do |ink| %>
+  <tr>
+    <td>
+      <p><%= ink.customer.name if ink.customer.name? %></p>
+    </td>
+    <td>
+      <p><%= ink.id %></p>
+    </td>
+    <td>
+      <p><%= ink.name.capitalize %></p>
+    </td>
+    <td>
+      <p><%= ink.client.capitalize if ink.client? %></p>
+    </td>
+    <td>
+      <p><%= ink.ink_type.capitalize %></p>
+    </td>
+    <td>
+      <p><%= ink.substrate.capitalize if ink.substrate? %></p>
+    </td>
+    <td>
+      <p><%= ink.coating.capitalize if ink.coating? %></p>
+    </td>
+    <td>
+      <p><%= ink.ink_number.upcase  %></p>
+    </td>
+    <td>
+      <p><%= ink.sap %></p>
+    </td>
+    <td>
+      <p><%= ink.created_at.strftime('%b-%d-%y') %></p>
+    </td>
+    
+      <% if ink.approved_on? %>
+        <td>  
+          <span style="color:green"><%= ink.approved_on.upcase %></span>
+        </td>
+      <% else %>
+        <td>  
+          <span style="color:pink"></span>
+        </td>
+      <% end %>
+    
+    <td style="width: 150px;word-wrap: break-word;">
+      <p><%= ink.comments.capitalize if ink.comments? %></p>
+    </td>
+    <td>
+      <p><%= ink.updated_at.strftime('%b-%d-%Y') %></p>
+    </td>
+    <td>
+      <%= link_to "", edit_ink_path(ink), id: "edit_#{ink.id}", class: 'glyphicon glyphicon-pencil index-icons' %>
+    </td>
+    <td>
+      <!-- < if current_user.id == group.user_id %> -->
+        <%= link_to "", ink_path(ink), method: :delete, id: "delete_ink_#{ink.id}_from_index", class: 'glyphicon glyphicon glyphicon-trash index-icons', data: {confirm: 'Are you sure you want to delete this ink?'} %>
+      <!-- < end %> -->
+    </td>
+  </tr>
+<% end %>
+

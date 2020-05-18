@@ -1,0 +1,13 @@
+<h1>Inks#show</h1>
+<p>Find me in app/views/inks/show.html.erb</p>
+<div class="container-fluid">
+  <div class="top-max-wrap">
+    
+    ID: <%= @ink.id %>
+    <br>
+    <h2><%= @ink.name %></h2>
+    
+    <%= link_to 'Edit', edit_ink_path(@ink) %> |
+    <%= link_to 'Back', inks_path %>
+  </div>
+</div>

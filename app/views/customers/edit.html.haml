@@ -1,0 +1,12 @@
+.container    
+  .user-index
+    %h1 Edit customer
+    %br
+    = render 'form'
+    .col-sm-6
+      = link_to 'Show', @customer, class: 'btn  btn-primary'
+      
+      = link_to 'Back', customers_path, class: 'btn  btn-default'
+%br
+%br
+%br

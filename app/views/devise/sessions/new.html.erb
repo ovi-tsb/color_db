@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="top-home-wrap">
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-horizontal") do |f| %>
+    <div class="form-style-10">
+    <h1>Log in<span></span></h1>
+    <form>
+        <div class="section"><span>1</span>Email</div>
+        <div class="inner-wrap">
+            <label>Email Address <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %></label>
+        </div>
+
+        <div class="section"><span>2</span>Password</div>
+            <div class="inner-wrap">
+            <label>Password <%= f.password_field :password, autocomplete: "current-password" %></label>
+            <!-- <label>Confirm Password <input type="password" name="field6" /></label> -->
+            <% if devise_mapping.rememberable? %>
+              <div class="form-group">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end %>
+        </div>
+        <div class="button-section">
+         <%= f.submit "Log in" %>
+         <!-- <span class="privacy-policy">
+          <input type="checkbox" name="field7">You agree to our Terms and Policy. 
+         </span> -->
+        </div>
+        <div class="shared-links">
+          <%= render "devise/shared/links" %>
+        </div>
+        
+    </form>
+    </div>
+
+
+      
+    <% end %>
+  </div>
+</div>
+
+

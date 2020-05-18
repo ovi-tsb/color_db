@@ -1,0 +1,62 @@
+<div class="well-form">
+  <%= simple_form_for @ink , html: { class: "form"} do |f| %>
+    <ul>
+      <% @ink.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+
+    <div class="form-inputs">
+      <label>Customer 
+        <%= select_tag(:customer_id, options_for_select(Customer.pluck(:name, :id)), {prompt: 'Select Customer'}) %>
+      </label> 
+    </div>
+    
+    <div class="form-inputs">
+      <label>Name <%= f.text_field :name, class: "form-control" %> </label>
+    </div>
+
+    <div class="form-inputs">
+      <label>Client <%= f.text_field :client, class: "form-control" %> </label>
+    </div>
+
+    <div class="form-inputs">
+      <label>Ink type <%= f.text_field :ink_type, class: "form-control" %> </label>
+    </div>
+
+    <div class="form-inputs">
+      <label>Substrate <%= f.text_field :substrate, class: "form-control" %> </label>
+    </div>
+
+    <div class="form-inputs">
+      <label>Coating <%= f.text_field :coating, class: "form-control" %> </label>
+    </div>
+
+    <div class="form-inputs">
+      <label>Ink number <%= f.text_field :ink_number, class: "form-control" %> </label>
+    </div>
+
+    <div class="form-inputs">
+      <label>Sap <%= f.text_field :sap, class: "form-control" %> </label>
+    </div>
+
+    <div class="form-inputs">
+      <label>Comments <%= f.text_field :comments, class: "form-control" %> </label>
+    </div>
+
+    <div class="form-inputs">
+      <label>Approved <%= f.check_box :approved, class: "form-control" %> </label>
+    </div>
+    <div class="form-inputs">
+      <label>Approved <%= f.text_field :approved_on, class: "form-control" %> </label>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, class: "btn-primary" %>
+    </div>
+  <% end %>
+</div>
+
+
+
+

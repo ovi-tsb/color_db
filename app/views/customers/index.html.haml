@@ -1,0 +1,20 @@
+.container-inks
+  
+  %h3 Customers 
+  = link_to 'New Customer', new_customer_path(@customer)
+  %br
+  %div#filterrific_results.table-responsive
+    %table.table.table-striped.table-hover
+      %thead
+        %tr.sortable-table
+          %th
+            Id
+          %th
+            Name
+          %th
+            Created
+          %th
+          %th  
+      %tbody
+        / = render "customers/customer"
+        = render @customers

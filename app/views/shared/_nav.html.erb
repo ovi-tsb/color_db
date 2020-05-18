@@ -1,0 +1,25 @@
+<% if current_user  && current_user.try(:type) == 'AdminUser'%>
+  
+  <ul class="nav nav-tabs">
+    <% Customer.all.each do |i| %>
+      <li class="nav-item">
+        <a class="nav-link" href="#{<%= i.id %>}"><%= i.name %></a>
+      </li>
+    <% end %>
+  </ul>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
