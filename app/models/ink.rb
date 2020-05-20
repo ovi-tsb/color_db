@@ -34,7 +34,7 @@ class Ink < ApplicationRecord
     # configure number of OR conditions for provision
     # of interpolation arguments. Adjust this if you
     # change the number of OR conditions.
-    num_or_conditions = 5
+    num_or_conditions = 6
     where(
       terms.map {
         or_clauses = [
@@ -42,7 +42,8 @@ class Ink < ApplicationRecord
           "LOWER(inks.client) LIKE ?",
           "LOWER(inks.ink_number) LIKE ?",
           "LOWER(inks.client) LIKE ?",
-          "LOWER(inks.coating) LIKE ?"
+          "LOWER(inks.coating) LIKE ?",
+          "LOWER(inks.sap) LIKE ?"
         ].join(' OR ')
         "(#{ or_clauses })"
       }.join(' AND '),

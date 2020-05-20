@@ -6,16 +6,26 @@
   background: #fff;
   padding: 20px;
   margin-top: -30px;
+
 }
 .table-responsive {
   overflow-x: auto;
 }
-th {
-  background: white;
+/*table th {
+    position:sticky;
+    top:0;
+    z-index:1;
+    border-top:0;
+    background: #ededed;
+}*/
+table th {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
   z-index: 10;
+  background: white;
+
 }
 table td { 
   border: 1px #000 solid;

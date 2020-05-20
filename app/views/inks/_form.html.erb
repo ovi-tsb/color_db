@@ -7,13 +7,15 @@
     </ul>
 
     <div class="form-inputs">
-      <label>Customer 
-        <%= select_tag(:customer_id, options_for_select(Customer.pluck(:name, :id)), {prompt: 'Select Customer'}) %>
-      </label> 
+      <% if current_user  && current_user.try(:type) != 'CustomerUser' %>
+        <label>Customer
+          <%= select_tag(:customer_id, options_for_select(Customer.pluck(:name, :id)), {prompt: 'Select Customer'}) %>
+        </label> 
+      <% end %>
     </div>
     
     <div class="form-inputs">
-      <label>Name <%= f.text_field :name, class: "form-control" %> </label>
+      <label>Name <%= f.text_field :name, class: "form-control", disabled: (true if current_user.try(:type) == 'CustomerUser') %> </label>
     </div>
 
     <div class="form-inputs">
@@ -21,23 +23,23 @@
     </div>
 
     <div class="form-inputs">
-      <label>Ink type <%= f.text_field :ink_type, class: "form-control" %> </label>
+      <label>Ink type <%= f.text_field :ink_type, class: "form-control", disabled: (true if current_user.try(:type) == 'CustomerUser')  %> </label>
     </div>
 
     <div class="form-inputs">
-      <label>Substrate <%= f.text_field :substrate, class: "form-control" %> </label>
+      <label>Substrate <%= f.text_field :substrate, class: "form-control", disabled: (true if current_user.try(:type) == 'CustomerUser')  %> </label>
     </div>
 
     <div class="form-inputs">
-      <label>Coating <%= f.text_field :coating, class: "form-control" %> </label>
+      <label>Coating <%= f.text_field :coating, class: "form-control", disabled: (true if current_user.try(:type) == 'CustomerUser')  %> </label>
     </div>
 
     <div class="form-inputs">
-      <label>Ink number <%= f.text_field :ink_number, class: "form-control" %> </label>
+      <label>Ink number <%= f.text_field :ink_number, class: "form-control", disabled: (true if current_user.try(:type) == 'CustomerUser')  %> </label>
     </div>
 
     <div class="form-inputs">
-      <label>Sap <%= f.text_field :sap, class: "form-control" %> </label>
+      <label>Sap <%= f.text_field :sap, class: "form-control", disabled: (true if current_user.try(:type) == 'CustomerUser')  %> </label>
     </div>
 
     <div class="form-inputs">

@@ -6,7 +6,7 @@ class InksController < ApplicationController
     # @inks = Ink.where(:inks => {:customer_id => customer_id})
     # @inks = Ink.all
 
-    if current_user  && current_user.try(:type) == 'AdminUser' || current_user.try(:type) == 'SuperUser' 
+    if current_user  && current_user.try(:type) != 'CustomerUser'
       @filterrific = initialize_filterrific(
         # Ink.joins(:customer).where('customer.id' => :customer_id),
         # Ink.joins(:customer).where('customer.id' => :customer_id),
@@ -73,7 +73,7 @@ class InksController < ApplicationController
     # @group.game_id = params[:game_id]
     respond_to do |format|
       if @ink.save
-        format.html { redirect_to @ink, notice: 'Ink was successfully created.' }
+        format.html { redirect_to inks_path, notice: 'Ink was successfully created.' }
         format.json { render :show, status: :created, location: @ink }
       else
         format.html { render :new }

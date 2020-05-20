@@ -1,7 +1,7 @@
 .filter_well  
   = form_for_filterrific( @filterrific, url: inks_path, html: { id: :manual_filterrific_form } ) do |f|
     .row.form-group
-      - if current_user  && current_user.try(:type) == 'AdminUser' || current_user.try(:type) == 'SuperUser'
+      - if current_user  && current_user.try(:type) != 'CustomerUser'
         .col-md-3.col-xs-6.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Change the sorting.' }
           %label Sorted by
           = f.select(:with_customer_id, @filterrific.select_options[:with_customer_id], {prompt: 'Select Customer'},{ :class => 'form-control' })
