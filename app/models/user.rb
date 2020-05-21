@@ -7,5 +7,7 @@ class User < ApplicationRecord
 
   belongs_to :customer, required: false
   has_many :inks
+
+  cattr_accessor :current_user
   
 end

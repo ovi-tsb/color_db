@@ -1,24 +1,26 @@
 <% @inks.each do |ink| %>
   <tr>
-    <td>
-      <p><%= ink.customer.name if ink.customer.name? %></p>
-    </td>
+    <% if current_user.try(:type) == 'AdminUser' || current_user.try(:type) == 'SuperUser' %>
+      <td>
+        <p><%= ink.customer.name.truncate(14) if ink.customer.name? %></p>
+      </td>
+    <% end %>
     <td>
       <p><%= ink.id %></p>
     </td>
     <td>
-      <p><%= ink.name.capitalize %></p>
+      <p><%= link_to truncate(ink.name.capitalize).capitalize.html_safe, ink %></p>
     </td>
-    <td>
+    <td class="hidden-sm hidden-xs">
       <p><%= ink.client.capitalize if ink.client? %></p>
     </td>
-    <td>
+    <td class="hidden-sm hidden-xs">
       <p><%= ink.ink_type.capitalize %></p>
     </td>
-    <td>
+    <td class="hidden-sm hidden-xs">
       <p><%= ink.substrate.capitalize if ink.substrate? %></p>
     </td>
-    <td>
+    <td class="hidden-sm hidden-xs">
       <p><%= ink.coating.capitalize if ink.coating? %></p>
     </td>
     <td>
@@ -27,34 +29,38 @@
     <td>
       <p><%= ink.sap %></p>
     </td>
-    <td>
+    <td class="hidden-sm hidden-xs">
       <p><%= ink.created_at.strftime('%b-%d-%y') %></p>
     </td>
     
       <% if ink.approved_on? %>
-        <td>  
+        <td class="hidden-sm hidden-xs">  
           <span style="color:green"><%= ink.approved_on.upcase %></span>
         </td>
       <% else %>
-        <td>  
+        <td class="hidden-sm hidden-xs">  
           <span style="color:pink"></span>
         </td>
       <% end %>
     
-    <td style="width: 150px;word-wrap: break-word;">
+    <td class="hidden-sm hidden-md hidden-xs" style="width: 150px;word-wrap: break-word;">
       <p><%= ink.comments.capitalize if ink.comments? %></p>
     </td>
-    <td>
-      <p><%= ink.updated_at.strftime('%b-%d-%Y') %></p>
+    <td class="hidden-sm hidden-xs">
+      <p><%= ink.updated_at.strftime('%b-%d-%Y') %> <br ><%= ink.modified_by if ink.modified_by? %></p>
     </td>
-    <td>
-      <%= link_to "", edit_ink_path(ink), id: "edit_#{ink.id}", class: 'glyphicon glyphicon-pencil index-icons' %>
-    </td>
-    <td>
-      <!-- < if current_user.id == group.user_id %> -->
-        <%= link_to "", ink_path(ink), method: :delete, id: "delete_ink_#{ink.id}_from_index", class: 'glyphicon glyphicon glyphicon-trash index-icons', data: {confirm: 'Are you sure you want to delete this ink?'} %>
-      <!-- < end %> -->
-    </td>
+    <% if current_user.try(:type) == 'AdminUser' || current_user.try(:type) == 'SuperUser' || current_user.try(:type) == 'CustomerUser'%>
+      <td>
+        <%= link_to "", edit_ink_path(ink), id: "edit_#{ink.id}", class: 'glyphicon glyphicon-pencil index-icons' %>
+      </td>
+    <% end %>
+    <% if current_user.try(:type) == 'AdminUser' || current_user.try(:type) == 'SuperUser' %>
+      <td>
+        <!-- < if current_user.id == group.user_id %> -->
+          <%= link_to "", ink_path(ink), method: :delete, id: "delete_ink_#{ink.id}_from_index", class: 'glyphicon glyphicon glyphicon-trash index-icons', data: {confirm: 'Are you sure you want to delete this ink?'} %>
+        <!-- < end %> -->
+      </td>
+    <% end %>
   </tr>
 <% end %>
 

@@ -2,6 +2,8 @@ class Ink < ApplicationRecord
 
   belongs_to :customer, required: false
   belongs_to :user, required: false
+
+  before_update :update_modified_by
   
 
   filterrific(
@@ -125,5 +127,12 @@ class Ink < ApplicationRecord
   
   
   # filteriffic 
+
+  def update_modified_by
+    self.modified_by = current_user_name 
+  end
+  def current_user_name
+    User.current_user.first_name + " " + User.current_user.last_name[0].upcase + "." 
+  end
 
 end

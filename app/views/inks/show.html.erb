@@ -1,13 +1,25 @@
-<h1>Inks#show</h1>
-<p>Find me in app/views/inks/show.html.erb</p>
-<div class="container-fluid">
-  <div class="top-max-wrap">
-    
-    ID: <%= @ink.id %>
-    <br>
-    <h2><%= @ink.name %></h2>
-    
-    <%= link_to 'Edit', edit_ink_path(@ink) %> |
-    <%= link_to 'Back', inks_path %>
+<div class="well-form">
+  <h1>Ink details</h1>
+  <div class="container-fluid">
+    <div class="top-max-wrap">
+      
+      ID: <%= @ink.id %>
+      <br>
+      <h3>Name: <%= @ink.name %></h3>
+      Client: <%= @ink.client.capitalize if @ink.client? %> <br>
+      Type: <%= @ink.ink_type.capitalize %><br>
+      Substrate: <%= @ink.substrate.capitalize if @ink.substrate? %><br>
+      Coating: <%= @ink.coating.capitalize if @ink.coating? %><br>
+      Ink Number: <%= @ink.ink_number.upcase  %><br>
+      SAP: <%= @ink.sap %><br>
+      Created at: <%= @ink.created_at.strftime('%b-%d-%y') %><br>
+      <span style="color:green"><%= @ink.approved_on.upcase if @ink.approved_on?%></span>
+      Comments: <%= @ink.comments.capitalize if @ink.comments? %>
+      Modified: <%= @ink.updated_at.strftime('%b-%d-%Y') %> <br ><%= @ink.modified_by if @ink.modified_by? %>
+      <% if current_user.try(:type) == 'AdminUser' || current_user.try(:type) == 'SuperUser' || current_user.try(:type) == 'CustomerUser'%>
+        <%= link_to 'Edit', edit_ink_path(@ink) %> |
+      <% end %>
+      <%= link_to 'Back', inks_path %>
+    </div>
   </div>
 </div>

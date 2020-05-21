@@ -4,11 +4,20 @@
   <div class="top-games-wrap">
     
     <h1>Inks List</h1>
+    <% if current_user.try(:type) == 'AdminUser'  %>
+      Admin User 
+    <% elsif current_user.try(:type) == 'SuperUser'%>
+      Super User
+    <% elsif current_user.try(:type) == 'CustomerUser' %>
+      Customer User
+    <% elsif %>
+      Regular User
+    <% end %>
     <% if current_user.customer_name %>
-      <%= current_user.customer_name %> views.
+      - <%= current_user.customer_name %>.
     <% end %>
     <br>
-    Logged as :<%= current_user.first_name.capitalize %> <%= current_user.last_name[0].upcase %>.
+    Logged as: <%= current_user.first_name.capitalize  if current_user.first_name? %> <%= current_user.last_name[0].upcase if current_user.last_name? %>.
     <br>
     <div class="logout">
       <% if current_user.try(:type) == 'AdminUser' || current_user.try(:type) == 'SuperUser'%>
@@ -43,25 +52,27 @@
     <table class="table table-striped table-hover ">
       <thead>
         <tr class="sortable-table">
-          <th>
-            Cust-Name
-          </th>
+          <% if current_user.try(:type) == 'AdminUser' || current_user.try(:type) == 'SuperUser' %>
+            <th>
+              Cust-Name
+            </th>
+          <% end %>
           <th>
             Id
           </th>
           <th>
             PMS #
           </th>
-          <th class=''>
+          <th class="hidden-sm hidden-xs">
             Client
           </th>
-          <th>
+          <th class="hidden-sm hidden-xs">
             Type
           </th>
-          <th>
+          <th class="hidden-sm hidden-xs">
             Substrate
           </th>
-          <th>
+          <th class="hidden-sm hidden-xs">
             Coating
           </th>
           <th>
@@ -70,24 +81,28 @@
           <th>
             Sap #
           </th>
-          <th>
+          <th class="hidden-sm hidden-xs">
             Created
           </th>
-          <th>
+          <th class="hidden-sm hidden-xs">
             Approved
           </th>
-          <th>
+          <th class="hidden-sm hidden-md hidden-xs">
             Comments
           </th>
-          <th>
+          <th class="hidden-sm hidden-xs">
             Updated
           </th>
-          <th>
-            <span class="glyphicon glyphicon-pencil"></span>
-          </th>
-          <th>
-            <span class="glyphicon glyphicon-trash"></span>
-          </th>
+          <% if current_user.try(:type) == 'AdminUser' || current_user.try(:type) == 'SuperUser' || current_user.try(:type) == 'CustomerUser'%>
+            <th>
+              <span class="glyphicon glyphicon-pencil"></span>
+            </th>
+          <% end %>
+          <% if current_user.try(:type) == 'AdminUser' || current_user.try(:type) == 'SuperUser'%>
+            <th>
+              <span class="glyphicon glyphicon-trash"></span>
+            </th>
+          <% end %>
         </tr>
       </thead>
     

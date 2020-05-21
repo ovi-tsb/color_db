@@ -1,5 +1,6 @@
 class InksController < ApplicationController
   before_action :set_ink, only: [:show, :edit, :update, :destroy]
+  
 
  
   def index
@@ -93,6 +94,8 @@ class InksController < ApplicationController
     end
   end
 
+  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ink
@@ -101,7 +104,7 @@ class InksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ink_params
-      params.require(:ink).permit(:name, :ink_type, :client, :substrate, :coating, :ink_number, :sap, :approved, :approved_on, :comments, :customer_id)
+      params.require(:ink).permit(:name, :ink_type, :client, :substrate, :coating, :ink_number, :sap, :approved, :approved_on, :comments, :customer_id, :modified_by)
     end
 
     def redirect_unless_admin
@@ -110,6 +113,8 @@ class InksController < ApplicationController
         redirect_to root_path
       end
     end
+
+    
 end
 
 
