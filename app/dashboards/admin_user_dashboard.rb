@@ -33,6 +33,7 @@ class AdminUserDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
   id
   email
+  title
   first_name
   last_name
   encrypted_password

@@ -54,24 +54,29 @@ to display a collection of resources in an HTML table.
 
   <tbody>
     <% resources.each do |resource| %>
+      <% next if resource.try(:type) == 'SuperUser' unless current_user.try(:type) == 'SuperUser' %>
       <tr class="js-table-row"
           tabindex="0"
           <% if valid_action? :show, collection_presenter.resource_name %>
             <%= %(role=link data-url=#{polymorphic_path([namespace, resource])}) %>
           <% end %>
           >
-        <% collection_presenter.attributes_for(resource).each do |attribute| %>
+        
+        <% collection_presenter.attributes_for(resource).reject {|current_user| current_user.try(:type) == 'SuperUser'}.each do |attribute| %>
           <td class="cell-data cell-data--<%= attribute.html_class %>">
             <% if show_action? :show, resource -%>
               <a href="<%= polymorphic_path([namespace, resource]) -%>"
                  class="action-show"
                  >
-                <%= render_field attribute %>
+                <!-- < next if resource.title == 'top' %> -->
+                <!-- < next if attribute.title != nil %> -->
+                  <%= render_field attribute %>
+                
               </a>
             <% end -%>
           </td>
         <% end %>
-
+      <% if current_user  && current_user.try(:type) == 'SuperUser' %>
         <% if valid_action? :edit, collection_presenter.resource_name %>
           <td><%= link_to(
             t("administrate.actions.edit"),
@@ -79,8 +84,9 @@ to display a collection of resources in an HTML table.
             class: "action-edit",
           ) if show_action? :edit, resource%></td>
         <% end %>
-
+      <% end %>
         <% if valid_action? :destroy, collection_presenter.resource_name %>
+          
           <td><%= link_to(
             t("administrate.actions.destroy"),
             [namespace, resource],

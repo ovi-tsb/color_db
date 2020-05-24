@@ -16,7 +16,8 @@ class UserDashboard < Administrate::BaseDashboard
     remember_created_at: Field::DateTime.with_options(searchable: false),
     first_name: Field::String.with_options(searchable: true),
     last_name: Field::String.with_options(searchable: true),
-    type: Field::String.with_options(searchable: false),
+    type: Field::String.with_options(searchable: true),
+    title: Field::String.with_options(searchable: true),
     created_at: Field::DateTime.with_options(searchable: false),
     updated_at: Field::DateTime.with_options(searchable: false),
     password: Field::String.with_options(searchable: false),
@@ -33,6 +34,7 @@ class UserDashboard < Administrate::BaseDashboard
   id
   email
   type
+  title
   first_name
   last_name
   encrypted_password

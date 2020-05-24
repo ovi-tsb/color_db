@@ -14,6 +14,9 @@
       <div class="inner-wrap">
         <label>First Name <%= f.text_field :first_name, class: "form-control", autofocus: true, autocomplete: "email" %></label>
         <label>Last Name <%= f.text_field :last_name, class: "form-control", autofocus: true, autocomplete: "email" %></label>
+        <% if current_user.try(:type) == 'SuperUser' %>
+          <label>Title <%= f.text_field :title, class: "form-control", autofocus: true %></label>
+        <% end %>
       </div>
       <div class="section"><span>3</span>New Password</div>
       <div class="inner-wrap">

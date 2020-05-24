@@ -17,6 +17,7 @@ class SuperUserDashboard < Administrate::BaseDashboard
     first_name: Field::String.with_options(searchable: true),
     last_name: Field::String.with_options(searchable: true),
     type: Field::String.with_options(searchable: false),
+    title: Field::String.with_options(searchable: false),
     created_at: Field::DateTime.with_options(searchable: false),
     updated_at: Field::DateTime.with_options(searchable: false),
     password: Field::String.with_options(searchable: false),
@@ -31,6 +32,7 @@ class SuperUserDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
   id
   email
+  title
   first_name
   last_name
   encrypted_password
