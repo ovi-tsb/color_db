@@ -17,7 +17,7 @@
       /   %label Status
       /   = f.select(:with_status, @filterrific.select_options[:with_status], { :include_blank => '- Any -' },{ :class => 'form-control' })
       ///////////////                         
-      .col-md-3.col-xs-6.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Change the sorting.' }
+      .col-md-3.col-xs-12.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Change the sorting.' }
         %label Sorted by
         = f.select :sorted_by, @filterrific.select_options[:sorted_by],{},{ :class => 'form-control' } 
       //////////

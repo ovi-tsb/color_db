@@ -134,7 +134,7 @@ button:focus {
 
 }  
 textarea {
-  min-height: 200px;
+  min-height: 150px;
   resize: vertical;
 }
 
@@ -146,8 +146,28 @@ textarea {
   width: 30%;
   margin-right: 2px;
 }
+input[type="checkbox"]:focus{
+        outline:0;
+        box-shadow:none;
+    }
+.form-control {
+        outline:0;
+        box-shadow:none;
+    }
 
+/* ----------  @media only screen  --------------- */
+/* ----------  -----------------  --------------- */
+/* ----------  -----------------  --------------- */
+/* ----------  -----------------  --------------- */
 
+@media only screen and (max-width: 767px) {
+  .form-inputs {
+    padding: 0;
+  }
+  .form-control {
+    min-width: 100% !important;
+  }
+}
 
 
 

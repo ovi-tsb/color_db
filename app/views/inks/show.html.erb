@@ -1,21 +1,28 @@
-<div class="well-form">
+<div class="well-ink">
   <h1>Ink details</h1>
   <div class="container-fluid">
     <div class="top-max-wrap">
+      <% if current_user.try(:type) == 'SuperUser' %>
+        <span class="show-title" >ID:</span> <%= @ink.id %>
+      <% end %>
+      <h4>Name: <b><%= @ink.name %></b></h4>
       
-      ID: <%= @ink.id %>
-      <br>
-      <h3>Name: <%= @ink.name %></h3>
-      Client: <%= @ink.client.capitalize if @ink.client? %> <br>
-      Type: <%= @ink.ink_type.capitalize %><br>
-      Substrate: <%= @ink.substrate.capitalize if @ink.substrate? %><br>
-      Coating: <%= @ink.coating.capitalize if @ink.coating? %><br>
-      Ink Number: <%= @ink.ink_number.upcase  %><br>
-      SAP: <%= @ink.sap %><br>
-      Created at: <%= @ink.created_at.strftime('%b-%d-%y') %><br>
+        <span class="show-title" >Client:</span> <% if @ink.client? %>
+                  <%= @ink.client.capitalize if @ink.client? %> 
+                <% else %> 
+                  N/A 
+                <% end %> <br>
+      
+      <span class="show-title" >Type:</span> <%= @ink.ink_type.capitalize %><br>
+      <span class="show-title" >Substrate:</span> <%= @ink.substrate.capitalize if @ink.substrate? %><br>
+      <span class="show-title" >Coating:</span> <%= @ink.coating.capitalize if @ink.coating? %><br>
+      <span class="show-title" >Ink Number:</span> <%= @ink.ink_number.upcase  %><br>
+      <span class="show-title" >SAP:</span> <%= @ink.sap %><br>
+      <span class="show-title" >Created at:</span> <%= @ink.created_at.strftime('%b-%d-%y') %><br>
       <span style="color:green"><%= @ink.approved_on.upcase if @ink.approved_on?%></span>
-      Comments: <%= @ink.comments.capitalize if @ink.comments? %>
-      Modified: <%= @ink.updated_at.strftime('%b-%d-%Y') %> <br ><%= @ink.modified_by if @ink.modified_by? %>
+      <span class="show-title" >Comments:</span> <%= @ink.comments.capitalize if @ink.comments? %><br>
+      <span class="show-title" >Last Update:</span> <%= @ink.updated_at.strftime('%b-%d-%Y') %> by -  <%= @ink.modified_by if @ink.modified_by? %>
+      <br>
       <% if current_user.try(:type) == 'AdminUser' || current_user.try(:type) == 'SuperUser' || current_user.try(:type) == 'CustomerUser'%>
         <%= link_to 'Edit', edit_ink_path(@ink) %> |
       <% end %>

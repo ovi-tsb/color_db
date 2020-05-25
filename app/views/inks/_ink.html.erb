@@ -1,11 +1,11 @@
 <% @inks.each do |ink| %>
   <tr>
     <% if current_user.try(:type) == 'AdminUser' || current_user.try(:type) == 'SuperUser' %>
-      <td>
+      <td class="hidden-sm hidden-xs">
         <p><%= ink.customer.name.truncate(14) if ink.customer.name? %></p>
       </td>
     <% end %>
-    <td>
+    <td class="hidden-sm hidden-xs">
       <p><%= ink.id %></p>
     </td>
     <td>
@@ -44,7 +44,7 @@
       <% end %>
     
     <td class="hidden-sm hidden-md hidden-xs" style="width: 150px;word-wrap: break-word;">
-      <p><%= ink.comments.capitalize if ink.comments? %></p>
+      <p><%= ink.comments.truncate(40).capitalize if ink.comments? %></p>
     </td>
     <td class="hidden-sm hidden-xs">
       <p><%= ink.updated_at.strftime('%b-%d-%Y') %> <br ><%= ink.modified_by if ink.modified_by? %></p>
