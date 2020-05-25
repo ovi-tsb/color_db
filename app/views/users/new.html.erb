@@ -1,14 +1,13 @@
 
 <div class="container-fluid">
   <div class="top-max-wrap">
-    <h2>New User</h2>
-
+    
     <%= render :template => "devise/registrations/new",:locals => { 
                       :resource => current_user, 
                       :resource_name => :user } %>
                     
 
-    <%= link_to 'Back', users_path %>
-
+    <%= link_to 'Back', users_path, class: "btn btn-default btn-md " %>
+    <br><br><br>
   </div>
 </div>

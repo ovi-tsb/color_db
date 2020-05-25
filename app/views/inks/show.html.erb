@@ -1,17 +1,17 @@
 <div class="well-ink">
-  <h1>Ink details</h1>
+  <!-- <h2>Details</h2> -->
   <div class="container-fluid">
     <div class="top-max-wrap">
       <% if current_user.try(:type) == 'SuperUser' %>
         <span class="show-title" >ID:</span> <%= @ink.id %>
       <% end %>
-      <h4>Name: <b><%= @ink.name %></b></h4>
-      
-        <span class="show-title" >Client:</span> <% if @ink.client? %>
-                  <%= @ink.client.capitalize if @ink.client? %> 
-                <% else %> 
-                  N/A 
-                <% end %> <br>
+      <u><h2><%= @ink.name %></h2></u>
+      <span class="show-title" >Client:</span> 
+          <% if @ink.client? %>
+            <%= @ink.client.capitalize if @ink.client? %> 
+          <% else %> 
+            N/A 
+          <% end %> <br>
       
       <span class="show-title" >Type:</span> <%= @ink.ink_type.capitalize %><br>
       <span class="show-title" >Substrate:</span> <%= @ink.substrate.capitalize if @ink.substrate? %><br>
@@ -22,11 +22,13 @@
       <span style="color:green"><%= @ink.approved_on.upcase if @ink.approved_on?%></span>
       <span class="show-title" >Comments:</span> <%= @ink.comments.capitalize if @ink.comments? %><br>
       <span class="show-title" >Last Update:</span> <%= @ink.updated_at.strftime('%b-%d-%Y') %> by -  <%= @ink.modified_by if @ink.modified_by? %>
-      <br>
+      <br><br><br>
+      <h2>
       <% if current_user.try(:type) == 'AdminUser' || current_user.try(:type) == 'SuperUser' || current_user.try(:type) == 'CustomerUser'%>
         <%= link_to 'Edit', edit_ink_path(@ink) %> |
       <% end %>
       <%= link_to 'Back', inks_path %>
+      </h2>
     </div>
   </div>
 </div>
