@@ -12,7 +12,9 @@
       = f.text_field :name, class: "form-control", :required => true, id: 'address_element', placeholder: "Name"
     
     .actions
-      = f.submit 'Save', class: 'btn btn-primary save-job'
+      = f.submit 'Save', class: 'btn btn-primary  col-sm-6'
+
+      = link_to 'Back', customers_path ,class: "btn btn-default col-sm-6"
   .col-sm-3 
   
   

@@ -176,7 +176,10 @@ input:checked + .slider:before {
   .well-ink {
     padding: 20px; 
   }
-  
+  .filter_button{
+    width: 100%; 
+    display:block;
+  }
   .form-inputs label {
     min-width: 100% !important;
   }
@@ -186,6 +189,21 @@ input:checked + .slider:before {
   .top-max-wrap {
     font-size: 1.2em;
   }
+
   
+}
+/* ----------  -----------------  --------------- */
+/* ----------  -----------------  --------------- */
+/* ----------  -----------------  --------------- */
+@media only screen and (min-width: 1200px) and (max-width: 1300px) {
+  .hide-element {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 980px) and (max-width: 1200px) {
+  .hide-element {
+    display: none;
+  }
 }
 

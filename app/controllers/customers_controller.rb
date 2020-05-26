@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_super_admin, only: [:show, :new, :edit, :update, :destroy]
 
   def index
     @customers = Customer.all
@@ -16,7 +17,7 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
+        format.html { redirect_to customers_path, notice: 'Customer was successfully created.' }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new }
@@ -30,6 +31,15 @@ class CustomersController < ApplicationController
   end
 
   def update
+    respond_to do |format|
+      if @customer.update(customer_params)
+        format.html { redirect_to customers_path, notice: 'Ink was successfully updated.' }
+        format.json { render :index, status: :ok, location: @customer }
+      else
+        format.html { render :edit }
+        format.json { render json: @customer.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
@@ -38,6 +48,11 @@ class CustomersController < ApplicationController
       format.html { redirect_to customers_url, notice: 'Customer was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def authorize_super_admin
+      redirect_to root_path, alert: "You are not allow  !!!" unless current_user.try(:type) == 'SuperUser'
+      #redirects to previous page
   end
 
   private

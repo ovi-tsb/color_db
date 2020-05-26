@@ -1,1 +1,11 @@
-<h2>Edit User</h2>
+
+<div class="well-form">
+  <h2>Edit User</h2>
+  <!-- <= render 'form', user: @user %> -->
+  <%= render :template => "devise/registrations/edit",:locals => { 
+                    :resource => @user, 
+                    :resource_name => :user } %>
+  <br>
+  <%= link_to 'Back', users_path, class: "btn btn-default btn-md" %>
+
+</div>

@@ -16,7 +16,7 @@
           Regular User
         <% end %>
         
-        <% if current_user.customer_name %>
+        <% if current_user.customer_name? %>
           - <%= current_user.customer_name %>.
         <% end %>
       </div>
@@ -37,31 +37,41 @@
             <% end %>
           </button>
         <% end %>
+        <% if current_user  && current_user.try(:type) == 'SuperUser' %>
+          <button type="button" class="btn btn-success btn-md custom-class">
+            <%= link_to customers_path do %>
+              <i class="glyphicon glyphicon glyphicon-list-alt"></i> Customers
+            <% end %>
+          </button>
+        <% end %>
+        <% if current_user  && current_user.try(:type) == 'SuperUser' %>
+          <button type="button" class="btn btn-success btn-md custom-class">
+            <%= link_to users_path do %>
+              <i class="glyphicon glyphicon glyphicon-user"></i> Users
+            <% end %>
+          </button>
+        <% end %>
       </div>
       <div class="col-md-6 col-xs-12">
         <div class="logout">
           <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-6">
-              <% if current_user.try(:type) == 'AdminUser' || current_user.try(:type) == 'SuperUser'%>
-
+            <% if current_user.try(:type) == 'AdminUser' || current_user.try(:type) == 'SuperUser'%>
+              <div class="col-md-4 col-sm-4 col-xs-6">
                 <button type="button" class="btn btn-danger btn-md custom-class">
                   <%= link_to admin_root_path do %>
                       <i class="glyphicon glyphicon-wrench"></i> Admin
                   <% end %>
                 </button>
-              <% end %>
-            </div>  
-            <!-- <button type="button" class="btn btn-primary btn-md">
-              <= link_to "Refresh", inks_path, :method => :get %>
-            </button> -->
-            <div class="col-md-4 col-sm-6 col-xs-6">
+              </div>  
+            <% end %>
+            <div class="col-md-4 col-sm-4 col-xs-6">
               <button type="button" class="btn btn-primary btn-md custom-class">
                 <%= link_to edit_user_registration_path do %>
                     <i class="glyphicon glyphicon glyphicon-cog"></i> Settings
                 <% end %>
               </button>
             </div>
-            <div class="col-md-4 col-sm-6 col-xs-6"> 
+            <div class="col-md-4 col-sm-4 col-xs-6"> 
               <button type="button" class="btn btn-info btn-md custom-class">
                 <%= link_to destroy_user_session_path, method: :delete do %>
                     <i class="glyphicon glyphicon-log-out"></i> Log out
@@ -72,7 +82,7 @@
         </div>
       </div>
     </div>
-<hr>
+<hr class="hidden-xs">
   <%= render 'inks/formfilter' %>
   <div class="table-wrap" id="filterrific_results">
     <table class="table table-striped table-hover ">
@@ -95,10 +105,10 @@
           <th class="hidden-sm hidden-xs">
             Type
           </th>
-          <th class="hidden-sm hidden-xs">
+          <th class="hidden-sm hidden-xs hide-element">
             Substrate
           </th>
-          <th class="hidden-sm hidden-xs">
+          <th class="hidden-sm hidden-xs hide-element">
             Coating
           </th>
           <th>

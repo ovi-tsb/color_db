@@ -1,0 +1,39 @@
+<div class="well-form">
+  <%= simple_form_for @user , html: { class: "form"} do |f| %>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+    <div class="form-inputs">
+      <label>First Name <%= f.text_field :first_name, class: "form-control" %> </label>
+    </div>
+    <div class="form-inputs">
+      <label>Last Name <%= f.text_field :last_name, class: "form-control" %> </label>
+    </div>
+
+    <div class="form-inputs">
+      <label>Email <%= f.email_field :email, class: "form-control" %> </label>
+    </div>
+
+    <div class="form-inputs">
+      <label>title <%= f.text_field :title, class: "form-control"  %> </label>
+    </div>
+
+    <div class="form-inputs">
+      <label>Customer name <%= f.text_field :customer_name, class: "form-control" %> </label>
+    </div>
+
+    <div class="form-inputs">
+      <label>Customer Id <%= f.text_field :customer_id, class: "form-control" %> </label>
+    </div>
+    <br>
+    <div class="form-actions">
+      <%= f.button :submit, class: "btn-primary" %>
+    </div>
+  <% end %>
+</div>
+
+
+
+

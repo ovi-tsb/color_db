@@ -69,6 +69,7 @@ class InksController < ApplicationController
   def create
     @ink = Ink.new(ink_params)
     @ink.customer_id = params[:customer_id]
+    @ink.user_id = current_user.id
     # @group.user_id = current_user.id
     
     # @group.game_id = params[:game_id]
@@ -104,7 +105,7 @@ class InksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ink_params
-      params.require(:ink).permit(:name, :ink_type, :client, :substrate, :coating, :ink_number, :sap, :approved, :approved_on, :comments, :customer_id, :modified_by)
+      params.require(:ink).permit(:name, :ink_type, :client, :substrate, :coating, :ink_number, :sap, :approved, :approved_on, :comments, :customer_id, :modified_by, :user_id)
     end
 
     def redirect_unless_admin

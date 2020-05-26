@@ -1,8 +1,7 @@
-  <div class="well-form">
-    <h3>Edit Ink</h3>
-    <%= render 'form', ink: @ink %>
+<div class="well-form">
+  <h3>Edit Ink</h3>
+  <%= render 'form', ink: @ink %>
+  <br>
+  <%= link_to 'Back', inks_path, class: "btn btn-default btn-md" %>
 
-    <!-- <= link_to 'Show', @ink %> | -->
-    <%= link_to 'Back', inks_path %>
-
-  </div>
+</div>
