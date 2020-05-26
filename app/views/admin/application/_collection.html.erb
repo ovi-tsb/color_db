@@ -56,11 +56,11 @@ to display a collection of resources in an HTML table.
     <% resources.each do |resource| %>
       <% next if resource.try(:type) == 'SuperUser' unless current_user.try(:type) == 'SuperUser' %>
       <tr class="js-table-row"
-          tabindex="0"
+          tabindex="0">
           <% if valid_action? :show, collection_presenter.resource_name %>
             <%= %(role=link data-url=#{polymorphic_path([namespace, resource])}) %>
           <% end %>
-          >
+          
         
         <% collection_presenter.attributes_for(resource).reject {|current_user| current_user.try(:type) == 'SuperUser'}.each do |attribute| %>
           <td class="cell-data cell-data--<%= attribute.html_class %>">
