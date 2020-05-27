@@ -24,8 +24,7 @@ class CustomerUserDashboard < Administrate::BaseDashboard
     customer_name: Field::String.with_options(searchable: true),
     customer_id: Field::String.with_options(searchable: true),
     # customer_name: Field::Select.with_options(Customer.all, :id, :name, {:prompt => '-- Select a Customer --'})
-    password: Field::String.with_options(searchable: false),
-    password_confirmation: Field::String.with_options(searchable: false)
+    
   }.freeze
 
   # COLLECTION_ATTRIBUTES
