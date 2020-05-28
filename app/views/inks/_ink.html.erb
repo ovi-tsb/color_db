@@ -30,7 +30,11 @@
       <p><%= ink.sap %></p>
     </td>
     <td class="hidden-sm hidden-xs">
-      <p><%= ink.created_at.strftime('%b-%d-%y') %> by <%= ink.user.first_name if ink.user_id? %> <%= ink.user.last_name[0].upcase if ink.user_id?%>.</p>
+      <p><%= ink.created_at.strftime('%b-%d-%y') %> 
+        <% if ink.user_id? %>
+        by: <%= ink.user.first_name if ink.user_id? %> <%= ink.user.last_name[0].upcase if ink.user_id?%>.
+        <% end %>
+      </p>
     </td>
     
       <% if ink.approved_on? %>
@@ -47,7 +51,11 @@
       <p><%= ink.comments.truncate(40).capitalize if ink.comments? %></p>
     </td>
     <td class="hidden-sm hidden-xs">
-      <p><%= ink.updated_at.strftime('%b-%d-%Y') %> <br ><%= ink.modified_by if ink.modified_by? %></p>
+      <p><%= ink.updated_at.strftime('%b-%d-%Y') %> 
+        <% if ink.modified_by? %>
+          by: <%= ink.modified_by if ink.modified_by? %>
+        <% end %>  
+      </p>
     </td>
     <% if current_user.try(:type) == 'AdminUser' || current_user.try(:type) == 'SuperUser' || current_user.try(:type) == 'CustomerUser'%>
       <td>

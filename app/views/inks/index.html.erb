@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6 col-xs-12 new-ink">
+      <div class="col-sm-6 col-md-6 col-xs-12 new-ink">
         <% if current_user  && current_user.try(:type) != 'CustomerUser' %>
           <!-- <= link_to 'New Ink', new_ink_path(@ink) %> -->
 
@@ -52,9 +52,9 @@
           </button>
         <% end %>
       </div>
-      <div class="col-md-6 col-xs-12">
+      <div class="col-sm-6 col-md-6 col-xs-12">
         <div class="logout">
-          <div class="row">
+          <!-- <div class="row"> -->
             <% if current_user.try(:type) == 'AdminUser' || current_user.try(:type) == 'SuperUser'%>
               <div class="col-md-4 col-sm-4 col-xs-6">
                 <button type="button" class="btn btn-danger btn-md custom-class">
@@ -71,6 +71,10 @@
                 <% end %>
               </button>
             </div>
+            <% if current_user.try(:type) != 'AdminUser' || current_user.try(:type) != 'SuperUser'%>
+              <div class="col-md-1  col-sm-1">
+              </div>
+            <% end %>
             <div class="col-md-4 col-sm-4 col-xs-6"> 
               <button type="button" class="btn btn-info btn-md custom-class">
                 <%= link_to destroy_user_session_path, method: :delete do %>
@@ -78,7 +82,7 @@
                 <% end %>
               </button>
             </div>
-          </div>
+          <!-- </div> -->
         </div>
       </div>
     </div>

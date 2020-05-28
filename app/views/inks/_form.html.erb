@@ -45,9 +45,9 @@
     <div class="form-inputs">
       <label>Comments <%= f.text_area :comments, class: "form-control" %> </label>
     </div>
-    
-    <div class="form-inputs">
-      <label>Approved <%= f.check_box :approved, class: "form-control" %> </label>
+    <div class="form-inputs check-box-line">
+      <label>Approved <br> 
+        <%= f.check_box :approved, class: "", id: "check-box" %> </label>
     </div>
     <!-- <div class="form-group col-sm-2 col-xs-4">
       <= f.label :activ %>
@@ -57,16 +57,32 @@
       </span>
       </label>
     </div> -->
-    <div class="form-inputs">
-      <label>Approved <%= f.text_field :approved_on, placeholder: "Int / Client", class: "form-control" %> </label>
+    <br>
+    <div class="form-inputs check-box-line" id="show-check-box"  style="display:none;">
+      <!-- <label>Approved <= f.text_field :approved_on, placeholder: "Int / Client", class: "form-control" %> </label> -->
+      <label>
+        <%= f.select :approved_on, ['Int', 'Client'], {prompt: 'Select '} %>
+      </label>
     </div>
     <br>
     <div class="form-actions">
       <%= f.button :submit, class: "btn-primary" %>
     </div>
   <% end %>
+  <br>
+  <%= link_to 'Back', inks_path, class: "btn btn-default btn-md" %>
 </div>
 
-
+<script type="text/javascript">
+  var checkbox = document.getElementById('check-box');
+  var details_div = document.getElementById('show-check-box');
+  checkbox.onchange = function() {
+     if(this.checked) {
+       details_div.style['display'] = 'block';
+     } else {
+       details_div.style['display'] = 'none';
+     }
+  };
+</script>
 
 

@@ -152,6 +152,19 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+.check-box-line label{
+  /*border: 1px solid red;*/
+}
+#show-check-box,
+#check-box {
+  display:inline-block;
+    vertical-align:middle;
+}
+.chec-form {
+  border: 1px solid red;
+}
+
+
 /* ***********************************************
 /* The switch 
 
@@ -189,7 +202,7 @@ input:checked + .slider:before {
   .top-max-wrap {
     font-size: 1.2em;
   }
-
+  
   
 }
 /* ----------  -----------------  --------------- */

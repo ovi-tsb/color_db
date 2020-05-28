@@ -82,11 +82,13 @@ body {
 }
 .form {
   border: 0px solid red;
+  width: 50%;
+  margin: 0 auto;
 }
 .form-inputs label{
   margin: 0 auto;
   display: block;
-  max-width: 40%
+  max-width: 100%;
   /*margin-left: 40%;*/
 }
 .container-form {
@@ -112,6 +114,9 @@ body, html {
   }
   .well-form {
     padding: 20px; 
+  }
+  .form {
+    width: 90%;
   }
   .top {
     width: 100%;

@@ -14,7 +14,8 @@ class Ink < ApplicationRecord
         :with_created_at,
         :with_name,
         :with_client,
-        :with_customer_id
+        :with_customer_id,
+        :with_sap
      ]
    )
 
@@ -65,6 +66,8 @@ class Ink < ApplicationRecord
       order("inks.name #{ direction }")
     when /^customer_id_/
       order("inks.customer_id #{ direction }")
+    when /^sap_/
+      order("inks.sap #{ direction }")
     else
       raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
     end
@@ -100,8 +103,8 @@ class Ink < ApplicationRecord
       ['Oldest first', 'created_at_asc'],
       ['PMS (Asc)', 'name_asc'],
       ['PMS (Desc)', 'name_desc'],
-      ['Cust (Desc)', 'customer_id_desc'],
-      ['Cust (asc)', 'customer_id_asc']
+      ['SAP (Desc)', 'sap_desc'],
+      ['SAP (Asc)', 'sap_asc']
     ]
   end
 
