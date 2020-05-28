@@ -19,7 +19,7 @@
       <span class="show-title" >Ink Number:</span> <%= @ink.ink_number.upcase  %><br>
       <span class="show-title" >SAP:</span> <%= @ink.sap %><br>
       <span class="show-title" >Created at:</span> <%= @ink.created_at.strftime('%b-%d-%y') %><br>
-      <span style="color:green"><%= @ink.approved_on.upcase if @ink.approved_on?%></span>
+      <span class="show-title">Approved:</span> <%= @ink.approved_on.capitalize if @ink.approved_on?%><br>
       <span class="show-title" >Comments:</span> <%= @ink.comments.capitalize if @ink.comments? %><br>
       <span class="show-title" >Last Update:</span> <%= @ink.updated_at.strftime('%b-%d-%Y') %> by -  <%= @ink.modified_by if @ink.modified_by? %>
       <br><br><br>
