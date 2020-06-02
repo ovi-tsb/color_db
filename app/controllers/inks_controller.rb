@@ -1,4 +1,5 @@
 class InksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_ink, only: [:show, :edit, :update, :destroy]
   
 
@@ -114,6 +115,7 @@ class InksController < ApplicationController
         redirect_to root_path
       end
     end
+
 
     
 end

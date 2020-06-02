@@ -16,6 +16,7 @@ module Admin
     before_action :authenticate_user!
     before_action :authenticate_admin
 
+
     def authenticate_admin
       # TODO Add authentication logic here.
       unless Admin.admin_types.include?(current_user.try(:type))
@@ -29,7 +30,13 @@ module Admin
     # def records_per_page
     #   params[:per_page] || 20
     # end
-
+    def authenticate_user
+      if logged_in?
+        return redirect_to inks_path
+      else
+        return redirect_to new_user_session_path
+      end
+    end
 
 
     

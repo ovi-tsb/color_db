@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+  before_action :authenticate_user!
+  before_action :authenticate_admin
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -58,6 +59,14 @@ class UsersController < ApplicationController
 
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def authenticate_admin
+      # TODO Add authentication logic here.
+      unless current_user.try(:type) == 'SuperUser'
+              flash[:alert] = "You are not authorized to access this page."
+              redirect_to(root_path)
+      end
     end
 
 end

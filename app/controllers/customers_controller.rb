@@ -1,4 +1,6 @@
 class CustomersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authenticate_admin
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   before_action :authorize_super_admin, only: [:show, :new, :edit, :update, :destroy]
 
@@ -65,4 +67,14 @@ class CustomersController < ApplicationController
   def set_customer
     @customer = Customer.find(params[:id])
   end
+
+
+  def authenticate_admin
+    # TODO Add authentication logic here.
+    unless current_user.try(:type) == 'SuperUser'
+            flash[:alert] = "You are not authorized to access this page."
+            redirect_to(root_path)
+    end
+  end
+
 end
