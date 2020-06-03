@@ -21,10 +21,17 @@ class CustomerUserDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime.with_options(searchable: false),
     password: Field::String.with_options(searchable: false),
     password_confirmation: Field::String.with_options(searchable: false),
-    customer_name: Field::String.with_options(searchable: true),
-    customer_id: Field::String.with_options(searchable: true),
-    # customer_name: Field::Select.with_options(Customer.all, :id, :name, {:prompt => '-- Select a Customer --'})
-    
+    # customer_name: Field::String.with_options(searchable: true),
+    # customer_id: Field::Number.with_options(searchable: true),
+    # customer_name: Field::Select.with_options(Customer.all.pluck(:name))
+    # customer_name: Field::Select.with_options(Customer.all.pluck(:name))
+    # customer_name: Field::Select.with_options(Customer.find(:all).collect {|u| [u.name, u.id]}, :prompt => 'Select')
+    customer_id: SelectField.with_options(
+      choices: Customer.all.pluck(:id) # Any array of choices. Add blank yourself if you need it.
+    ),
+    customer_name: SelectField.with_options(
+      choices: Customer.all.pluck(:id, :name).map { |id, name| {id: id, name: name}} # Any array of choices. Add blank yourself if you need it.
+    )
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -70,8 +77,9 @@ class CustomerUserDashboard < Administrate::BaseDashboard
   first_name
   last_name
   type
-  customer_name
   customer_id
+  customer_name
+  
   ].freeze
 
   # COLLECTION_FILTERS
